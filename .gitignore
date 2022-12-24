@@ -1,0 +1,17 @@
+# python cache
+__pycache__/
+
+# log
+*.log
+log/
+
+# python venv
+venv/
+.env/
+
+# local file / dir
+*_local*
+
+# OSX file
+.DS_Store
+
