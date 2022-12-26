@@ -2,6 +2,7 @@ import requests
 from process_data import Data
 from citytodata import CitytoData
 
+
 class GetWeather(object):
 
     def __init__(self, city):
@@ -43,9 +44,8 @@ class GetWeather(object):
         coldRisk = life_index['coldRisk'][0]
         comfort = life_index['comfort'][0]
         date = weather['result']['daily']['astro'][0]['date'][:10]
-        
 
-        citydraft = self.city+'今天' 
+        citydraft = self.city+'今天'
         dateDraft = date + '。'
         temperatureDraft = '温度：' + \
             f"{temperature['max']} ~ {temperature['min']}" + '℃。 '
@@ -56,12 +56,13 @@ class GetWeather(object):
         precipitationDraft = '降水可能性：' + \
             f"{precipitation['probability']}" + '%。 '
         skyconDraft = '天气' + Data.weather_dict[skycon['value']] + '。'
-        pm25Draft = '今天PM2.5: ' + f"{air_quality['pm25'][0]['avg']}" + 'μg/m³。 '
+        pm25Draft = '今天PM2.5: ' + \
+            f"{air_quality['pm25'][0]['avg']}" + 'μg/m³。 '
         ultravioletDraft = '紫外线' + f"{ultraviolet['desc']}" + '，'
         coldRiskDraft = '感冒指数：' + f"{coldRisk['desc']}" + '。'
         comfortDraft = '体感' + f"{comfort['desc']}" + '，'
 
-        draft = dateDraft + citydraft+ skyconDraft + precipitationDraft + temperatureDraft + winddrectionDraft + \
+        draft = dateDraft + citydraft + skyconDraft + precipitationDraft + temperatureDraft + winddrectionDraft + \
             windspeedDraft + pm25Draft + ultravioletDraft + comfortDraft + coldRiskDraft
         print(draft)
 
