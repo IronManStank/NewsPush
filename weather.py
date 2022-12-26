@@ -1,17 +1,29 @@
+#!/usr/bin/env python3
+# -*- encoding: utf-8 -*-
+# 文件: weather.py
+
+
 import requests
 from process_data import Data
 from citytodata import CitytoData
-
+from error import GetWeatherFaildError
+from get_token import get_token
 
 class GetWeather(object):
-
     def __init__(self, city):
         self.baseurl = 'https://api.caiyunapp.com/v2.6'
         self.city = city
         self.loacation = CitytoData(self.city).get_data()
         self.dailysteps = 1
-        self.info_dict = {'token': 'lgLGDjdTgEpLp9N2', 'city': self.loacation, 'forcastype': 'daily', 'ASKPARAM': {
-            'dailysteps': self.dailysteps, 'alert': 'true'}}
+        self.info_dict = {
+            'token': get_token(),
+            'city': self.loacation,
+            'forcastype': 'daily',
+            'ASKPARAM': {
+                'dailysteps': self.dailysteps,
+                'alert': 'true'
+            }
+        }
 
         self.askurl = ''
         self.weatherInfo = {}
@@ -30,7 +42,7 @@ class GetWeather(object):
             self.weatherInfo = r.json()
         except Exception as e:
             print('获取天气失败')
-            raise GetWeatherFaild('获取天气失败')
+            raise GetWeatherFaildError(f'获取天气失败, {e}')
 
     def pross_weather(self):
         weather = self.weatherInfo
@@ -55,7 +67,7 @@ class GetWeather(object):
             Data.get_wind_direction(wind['avg']['direction'])
         precipitationDraft = '降水可能性：' + \
             f"{precipitation['probability']}" + '%。 '
-        skyconDraft = '天气' + Data.weather_dict[skycon['value']] + '。'
+        skyconDraft = '天气' + Data.WEATHER_DICT[skycon['value']] + '。'
         pm25Draft = '今天PM2.5: ' + \
             f"{air_quality['pm25'][0]['avg']}" + 'μg/m³。 '
         ultravioletDraft = '紫外线' + f"{ultraviolet['desc']}" + '，'
@@ -65,22 +77,6 @@ class GetWeather(object):
         draft = dateDraft + citydraft + skyconDraft + precipitationDraft + temperatureDraft + winddrectionDraft + \
             windspeedDraft + pm25Draft + ultravioletDraft + comfortDraft + coldRiskDraft
         print(draft)
-
-
-class GetWeatherFaild(Exception):
-    pass
-
-
-class GetWeatherFaild2(Exception):
-    pass
-
-
-class GetWeatherFaild3(Exception):
-    pass
-
-
-class GetWeatherFaild4(Exception):
-    pass
 
 
 if __name__ == '__main__':
