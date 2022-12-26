@@ -8,6 +8,9 @@ log/
 # python venv
 venv/
 .env/
+.venv/
+.gitignore
+
 
 # local file / dir
 *_local*
