@@ -1,70 +1,88 @@
-# coding=utf-8
-import sys
+#!/usr/bin/env python3
+# -*- encoding: utf-8 -*-
+# 文件: process_data.py
 
+'''
+天气代号，转变为文字描述
+
+风速风向数字转为文字描述
+'''
 
 # init datas
 class Data:
+    # 代号与文字描述对应关系
+    WEATHER_DICT = {
+        'CLEAR_DAY': '晴天',
+        'CLEAR_NIGHT': '晴夜',
+        'PARTLY_CLOUDY_DAY': '多云',
+        'PARTLY_CLOUDY_NIGHT': '多云',
+        'CLOUDY':  '阴',
+        'RAIN': '雨',
+        'SNOW': '雪',
+        'WIND': '风',
+        'FOG': '雾',
+        'HAZE': '霾',
+        'SLEET': '冻雨'
+    }
 
-	weather_dict = {u'CLEAR_DAY': u'晴天',
-					u'CLEAR_NIGHT': '晴夜',
-					u'PARTLY_CLOUDY_DAY': u'多云',
-					u'PARTLY_CLOUDY_NIGHT':u'多云',
-					u'CLOUDY':  u'阴',
-					u'RAIN': u'雨',
-					u'SNOW':u'雪',
-					u'WIND': u'风',
-					u'FOG': u'雾', 
-     				u'HAZE': u'霾',
-					u'SLEET': u'冻雨'}
+    @staticmethod
+    def get_wind_direction(wd: float):
+        '''
+        将风向角度转换为文字描述
+        :param wd: 风向角度
+        '''
+        if wd <= 22.5 or wd > 337.5:
+            return '北风'
+        elif 22.5 < wd <= 67.5:
+            return '东北风'
+        elif 67.5 < wd <= 112.5:
+            return '东风'
+        elif 112.5 < wd <= 157.5:
+            return '东南风'
+        elif 157.5 < wd <= 202.5:
+            return '南风'
+        elif 202.5 < wd <= 247.5:
+            return '西南风'
+        elif 247.5 < wd <= 292.5:
+            return '西风'
+        elif 292.5 < wd <= 337.5:
+            return '西北风'
+        else:
+            return '未知'
 
-	@staticmethod
-	def get_wind_direction(wd):
-		if wd <= 22.5 or wd > 337.5:
-			return u'北风'
-		elif 22.5 < wd <= 67.5:
-			return u'东北风'
-		elif 67.5 < wd <= 112.5:
-			return u'东风'
-		elif 112.5 < wd <= 157.5:
-			return u'东南风'
-		elif 157.5 < wd <= 202.5:
-			return u'南风'
-		elif 202.5 < wd <= 247.5:
-			return u'西南风'
-		elif 247.5 < wd <= 292.5:
-			return u'西风'
-		elif 292.5 < wd <= 337.5:
-			return u'西北风'
-
-	@staticmethod
-	def get_wind_speed(ws):
-		if ws <= 2:
-			return u'无风'
-		if 2 < ws <= 6:
-			return u'软风'
-		elif 6 < ws <= 12:
-			return u'轻风'
-		elif 12 < ws <= 19:
-			return u'缓风'
-		elif 19 < ws <= 30:
-			return u'和风'
-		elif 30 < ws <= 40:
-			return u'清风'
-		elif 40 < ws <= 51:
-			return u'强风'
-		elif 51 < ws <= 62:
-			return u'疾风'
-		elif 62 < ws <= 75:
-			return u'烈风'
-		elif 75 < ws <= 87:
-			return u'增强烈风'
-		elif 87 < ws <= 103:
-			return u'暴风'
-		elif 103 < ws <= 149:
-			return u'台风'
-		elif 149 < ws <= 183:
-			return u'强台飓风'
-		elif 183 < ws <= 220:
-			return u'超强台飓风'
-		else:
-			return u'极强台飓风'
+    @staticmethod
+    def get_wind_speed(ws: float):
+        '''
+        将风速数字转换为文字描述
+        :param ws: 风速数字
+        '''
+        if ws <= 2:
+            return '无风'
+        if 2 < ws <= 6:
+            return '软风'
+        elif 6 < ws <= 12:
+            return '轻风'
+        elif 12 < ws <= 19:
+            return '缓风'
+        elif 19 < ws <= 30:
+            return '和风'
+        elif 30 < ws <= 40:
+            return '清风'
+        elif 40 < ws <= 51:
+            return '强风'
+        elif 51 < ws <= 62:
+            return '疾风'
+        elif 62 < ws <= 75:
+            return '烈风'
+        elif 75 < ws <= 87:
+            return '增强烈风'
+        elif 87 < ws <= 103:
+            return '暴风'
+        elif 103 < ws <= 149:
+            return '台风'
+        elif 149 < ws <= 183:
+            return '强台飓风'
+        elif 183 < ws <= 220:
+            return '超强台飓风'
+        else:
+            return '极强台飓风'
