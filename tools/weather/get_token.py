@@ -6,7 +6,7 @@ import os
 from tools.error import TokenNotFoundError
 
 
-def get_token(t_or_p) -> str:
+def get_token(t_or_p: str) -> str:
     '''
     获取API的token，可以是一个文件的路径，也可以是token本身
 
@@ -17,6 +17,6 @@ def get_token(t_or_p) -> str:
             with open(t_or_p, 'r', encoding='utf-8') as f:
                 return f.read().strip()
         else:
-            return t_or_p
+            return t_or_p.strip()
     except Exception as e:
         raise TokenNotFoundError(f'无法读取token, Err: {e}')

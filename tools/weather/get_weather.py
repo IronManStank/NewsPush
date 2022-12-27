@@ -7,16 +7,17 @@ import requests
 from tools.weather.process_data import Data
 from tools.weather.citytodata import CitytoData
 from tools.error import GetWeatherFaildError
+from .get_token import get_token
 
 
 class GetWeather(object):
-    def __init__(self, city: str, token: str):
+    def __init__(self, city: str, token_or_path: str):
         self.baseurl = 'https://api.caiyunapp.com/v2.6'
         self.city = city
         self.loacation = CitytoData(self.city).get_data()
         self.dailysteps = 1
         self.info_dict = {
-            'token': token,
+            'token': get_token(token_or_path),
             'city': self.loacation,
             'forcastype': 'daily',
             'ASKPARAM': {

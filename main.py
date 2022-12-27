@@ -3,11 +3,10 @@
 # 文件: main.py
 
 from tools.weather import GetWeather
-from tools.weather.get_token import get_token
 import argparse
 
-
-def main():
+# 在这里解析命令行
+def get_cli_args():
     parser = argparse.ArgumentParser(description="NewsPush Bot")
 
     parser.add_argument('--token',  '-t', type=str,
@@ -18,12 +17,14 @@ def main():
     args = {x: y for x, y in args}
 
     # 现在 args 是个字典
-    print(args)
+    # print(args)
 
-    token = get_token(args['token'][0])
+    return args
 
+def main():
+    args = get_cli_args()
 
-    a = GetWeather('北京', token)
+    a = GetWeather('北京', args['token'][0])
     a.process_url()
     a.get_weather()
     a.pross_weather()
