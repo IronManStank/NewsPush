@@ -30,7 +30,7 @@ class CitytoData(object):
                 for row in reader:
                     if self.city in row:
                         self.location = ''+str(row[5])+','+str(row[4])
-                        print(self.location)
+                        # print(self.location)
                         return self.location
                 if len(self.location) == 0:
                     print('没有找到该城市,请重新输入！示例：天津南开区->南开')
