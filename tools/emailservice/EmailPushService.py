@@ -18,7 +18,14 @@ def get_value(clidict: dict, key: str, single: bool = True, default=None):
 
 
 def get_email_info(clidict: dict):
-    template_dict = {}
+    template_dict = {
+        "header": {
+            "HeaderFrom": "Personal Intelligence System",
+            "HeaderTo": "BOSS"
+        },
+        "subject": "Email test",
+        "message": "This is a test email."
+    }
     # 尝试获取模板 也就是 本地配置文件
     # 思路就是，本地配置文件保存完整或不完整的邮件配置
     # 再用命令行参数update它

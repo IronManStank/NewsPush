@@ -62,7 +62,7 @@ def main():
     info = get_email_info(args)
 
     try:
-        send_email(info, 'test.html')
+        send_email(info, weather_str)
 
     except Exception as e:
         print(f'发送失败: Err: {e}')

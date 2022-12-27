@@ -1,0 +1,23 @@
+name: News Push
+
+on:
+  schedule:
+    - cron: '0 23 * * *'
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-python@v2
+      with:
+        python-version: 3.9
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    - name: send email
+      run: |
+        python main.py -t "${{ secrets.TOKEN }}" -s "${{ secrets.SENDER }}" -n "${{ secrets.ETOKEN }}" -r "${{ secrets.USER1 }}" -r "${{ secrets.USER2 }}"
+      continue-on-error: true
