@@ -4,10 +4,10 @@
 
 
 import requests
-from process_data import Data
-from citytodata import CitytoData
-from error import GetWeatherFaildError
-from get_token import get_token
+from tools.weather.process_data import Data
+from tools.weather.citytodata import CitytoData
+from tools.error import GetWeatherFaildError
+from tools.weather.get_token import get_token
 
 class GetWeather(object):
     def __init__(self, city):
