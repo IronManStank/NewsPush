@@ -24,8 +24,8 @@ def get_cli_args():
     parser.add_argument('--etoken', '-n', type=str,
                         required=False, help='email: token', nargs=1)
 
-    parser.add_argument('--receivers', '-r', type=str, action='append',
-                        required=False, help='email: token')
+    parser.add_argument('--receivers', '-r', type=str,
+                        required=False, help='email: 接收者，多个接收者用 , 隔开', nargs=1)
 
     parser.add_argument('--hfrom', '-f', type=str,
                         required=False, help='email: HeaderFrom', nargs=1)

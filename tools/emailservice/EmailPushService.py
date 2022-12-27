@@ -36,10 +36,15 @@ def get_email_info(clidict: dict):
     except:
         print('无法读取配置文件')
 
+    # None 或者 str
+    receivers = get_value(clidict, 'receivers')
+    if receivers is not None:
+        receivers = receivers.split(',')
+
     temp = {
         "sender": get_value(clidict, 'sender') or get_value(template_dict, 'sender', False),
         "token":  get_value(clidict, 'etoken') or get_value(template_dict, 'token', False),
-        "receivers": get_value(clidict, 'receivers', False) or get_value(template_dict, "receivers", False),
+        "receivers": receivers or get_value(template_dict, "receivers", False),
         "header": {
             "HeaderFrom": get_value(clidict, 'hfrom') or get_value(template_dict, "header", False)['HeaderFrom'],
             "HeaderTo": get_value(clidict, 'hto') or get_value(template_dict, "header", False)['HeaderTo']
