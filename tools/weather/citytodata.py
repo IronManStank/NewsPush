@@ -23,7 +23,7 @@ class CitytoData(object):
         self.location = ''
 
     def get_data(self):
-        csv_path = 'city_data.csv'
+        csv_path = './assets/weatherdata/city_data.csv'
         try:
             with open(csv_path, 'r', encoding='utf-8') as f:
                 reader = csv.reader(f)
