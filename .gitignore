@@ -20,3 +20,6 @@ venv/
 
 # token file
 token.txt
+
+# emailconfig
+email_config.json
