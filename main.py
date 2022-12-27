@@ -13,7 +13,7 @@ def get_cli_args():
 
     parser.add_argument('--token',  '-t', type=str,
                         default=['token.txt'], help='token本身，或者所在的txt文件路径', nargs=1)
-    
+
     # 邮件相关
     # 用这里提供的参数去更新本地文件的参数
     # 这里的参数可以不是完整的
@@ -26,16 +26,16 @@ def get_cli_args():
 
     parser.add_argument('--receivers', '-r', type=str, action='append',
                         required=False, help='email: token')
-    
+
     parser.add_argument('--hfrom', '-f', type=str,
                         required=False, help='email: HeaderFrom', nargs=1)
 
     parser.add_argument('--hto', '-o', type=str,
                         required=False, help='email: HeaderTo', nargs=1)
-    
+
     parser.add_argument('--subject', '-j', type=str,
                         required=False, help='email: subject', nargs=1)
-    
+
     parser.add_argument('--message', '-m', type=str,
                         required=False, help='email: message 可以是文件路径', nargs=1)
 
