@@ -6,7 +6,8 @@ from tools.error import EmailFormatError, EmailServerLoginError, EmailSendError
 from os.path import isfile
 import json
 
-def get_value(clidict: dict, key: str, single:bool=True, default=None):
+
+def get_value(clidict: dict, key: str, single: bool = True, default=None):
     try:
         if single:
             return clidict[key][0]
@@ -14,6 +15,7 @@ def get_value(clidict: dict, key: str, single:bool=True, default=None):
             return clidict[key]
     except:
         return default
+
 
 def get_email_info(clidict: dict):
     template_dict = {}
@@ -38,7 +40,7 @@ def get_email_info(clidict: dict):
         "subject": get_value(clidict, 'subject') or get_value(template_dict, 'subject', False),
         "message": get_value(clidict, 'message') or get_value(template_dict, 'message', False)
     }
-    print(temp)
+    return temp
 
 
 class EmailInformation():
