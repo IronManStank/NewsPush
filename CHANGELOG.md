@@ -6,7 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
-- 实现基础功能
+- 命令行解析
+- 实现天气信息基础功能
 - 初始化仓库
 
 <!-- ## [0.1.0] - 2022-12-24
