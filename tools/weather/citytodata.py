@@ -23,14 +23,14 @@ class CitytoData(object):
         self.location = ''
 
     def get_data(self):
-        csv_path = 'city_data.csv'
+        csv_path = './assets/weatherdata/city_data.csv'
         try:
             with open(csv_path, 'r', encoding='utf-8') as f:
                 reader = csv.reader(f)
                 for row in reader:
                     if self.city in row:
                         self.location = ''+str(row[5])+','+str(row[4])
-                        print(self.location)
+                        # print(self.location)
                         return self.location
                 if len(self.location) == 0:
                     print('没有找到该城市,请重新输入！示例：天津南开区->南开')
