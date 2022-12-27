@@ -4,7 +4,7 @@
 
 from tools.weather import get_weather_str
 import argparse
-from tools.emailservice.emailpushservice import send_email, get_email_info
+from tools.emailservice import send_email, get_email_info
 
 
 def get_cli_args():
@@ -51,7 +51,7 @@ def get_cli_args():
 
 def main():
     args = get_cli_args()
-
+    weather_str = '未找到天气数据'
     try:
         weather_str = get_weather_str('北京', args['token'][0])
         print(weather_str)

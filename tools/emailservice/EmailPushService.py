@@ -18,6 +18,7 @@ def get_value(clidict: dict, key: str, single: bool = True, default=None):
 
 
 def get_email_info(clidict: dict):
+    '''从命令行字典获取邮件参数'''
     template_dict = {
         "header": {
             "HeaderFrom": "Personal Intelligence System",
