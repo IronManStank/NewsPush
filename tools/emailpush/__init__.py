@@ -7,4 +7,4 @@ __all__ = [
     'send_email'
 ]
 
-from .emailpushservice import get_email_info, send_email
+from .emailserver import get_email_info, send_email
