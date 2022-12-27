@@ -9,6 +9,7 @@ from tools.weather.citytodata import CitytoData
 from tools.error import GetWeatherFaildError
 from tools.weather.get_token import get_token
 
+
 class GetWeather(object):
     def __init__(self, city):
         self.baseurl = 'https://api.caiyunapp.com/v2.6'
@@ -27,6 +28,9 @@ class GetWeather(object):
 
         self.askurl = ''
         self.weatherInfo = {}
+
+        # 保存结果
+        self.result_str = ''
 
     def process_url(self):
         '''处理url'''
@@ -76,7 +80,8 @@ class GetWeather(object):
 
         draft = dateDraft + citydraft + skyconDraft + precipitationDraft + temperatureDraft + winddrectionDraft + \
             windspeedDraft + pm25Draft + ultravioletDraft + comfortDraft + coldRiskDraft
-        print(draft)
+
+        self.result_str = draft
 
 
 if __name__ == '__main__':
@@ -84,3 +89,4 @@ if __name__ == '__main__':
     a.process_url()
     a.get_weather()
     a.pross_weather()
+    print(a.result_str)
