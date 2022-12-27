@@ -84,7 +84,7 @@ class GetWeather(object):
 
             self.result_str = draft
         except Exception as e:
-            raise GetWeatherFaildError(f'无法获取天气数据, Err: {e}')
+            raise GetWeatherFaildError(f'无法获取天气数据: {weather}, Err: {e}')
 
 
 def get_weather_str(city: str, token_or_path: str) -> str:
