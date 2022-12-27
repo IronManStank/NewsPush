@@ -4,6 +4,7 @@
 
 from tools.weather import get_weather_str
 import argparse
+from tools.emailservice.EmailPushService import send_email
 
 
 def get_cli_args():
@@ -26,9 +27,27 @@ def get_cli_args():
 def main():
     args = get_cli_args()
 
-    weather_str = get_weather_str('北京', args['token'][0])
+    try:
+        weather_str = get_weather_str('北京', args['token'][0])
 
-    print(weather_str)
+        print(weather_str)
+    except Exception as e:
+        print(f'获取天气信息失败: {e}')
+
+    # 发送邮件
+    info = {
+        'sender': '1157723200@qq.com',
+        'token': 'mqrsefodflqejcji',
+        'receivers': ['1157723200@qq.com', 'azureqaq@icloud.com'],
+        'header': {'HeaderFrom': 'Personal Intelligence System', 'HeaderTo': 'BOSS'},
+        'subject': 'Email test',
+        'message': 'This is a test email.'
+    }
+    try:
+        send_email(info, 'test.html')
+    except Exception as e:
+        print(f'发送失败: Err: {e}')
+        raise e
 
 
 if __name__ == '__main__':
