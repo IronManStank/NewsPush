@@ -6,6 +6,9 @@ from tools.weather import get_weather_str
 import argparse
 from tools.emailservice import send_email, get_email_info
 
+import sys
+
+sys.path.append('./tools')
 
 def get_cli_args():
     # 在这里解析命令行
