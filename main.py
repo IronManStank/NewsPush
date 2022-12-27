@@ -6,6 +6,7 @@ from tools.weather import get_weather_str
 import argparse
 from tools.emailpush import send_email, get_email_info
 
+
 def get_cli_args():
     # 在这里解析命令行
     parser = argparse.ArgumentParser(description="NewsPush Bot")
