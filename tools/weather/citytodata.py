@@ -4,7 +4,7 @@
 
 
 import csv
-from error import CsvParserError
+from tools.error import CsvParserError
 
 
 class CitytoData(object):

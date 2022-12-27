@@ -3,7 +3,7 @@
 # 文件: get_token.py
 
 import sys
-from error import TokenNotFoundError
+from tools.error import TokenNotFoundError
 
 
 def get_token() -> str:
