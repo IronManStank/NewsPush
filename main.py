@@ -2,11 +2,12 @@
 # -*- encoding: utf-8 -*-
 # 文件: main.py
 
-from tools.weather import GetWeather
+from tools.weather import get_weather_str
 import argparse
 
-# 在这里解析命令行
+
 def get_cli_args():
+    # 在这里解析命令行
     parser = argparse.ArgumentParser(description="NewsPush Bot")
 
     parser.add_argument('--token',  '-t', type=str,
@@ -21,16 +22,13 @@ def get_cli_args():
 
     return args
 
+
 def main():
     args = get_cli_args()
 
-    a = GetWeather('北京', args['token'][0])
-    a.process_url()
-    a.get_weather()
-    a.pross_weather()
-    # pross_weather 不再直接打印结果字符
-    # 而是保存在 result_str 中
-    print(a.result_str)
+    weather_str = get_weather_str('北京', args['token'][0])
+
+    print(weather_str)
 
 
 if __name__ == '__main__':

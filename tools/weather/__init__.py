@@ -6,4 +6,8 @@
 天气相关
 '''
 
-from .get_weather import GetWeather
+__all__ = [
+    'get_weather_str'
+]
+
+from .get_weather import get_weather_str

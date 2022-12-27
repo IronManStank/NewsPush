@@ -87,9 +87,9 @@ class GetWeather(object):
             raise GetWeatherFaildError(f'无法获取天气数据, Err: {e}')
 
 
-if __name__ == '__main__':
-    a = GetWeather('北京')
+def get_weather_str(city: str, token_or_path: str) -> str:
+    a = GetWeather(city, token_or_path)
     a.process_url()
     a.get_weather()
     a.pross_weather()
-    print(a.result_str)
+    return a.result_str
