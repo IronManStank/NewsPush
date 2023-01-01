@@ -91,7 +91,7 @@ class SendEmail():
 if __name__ == '__main__':
     info = {'sender': '1157723200@qq.com', 'token': 'mqrsefodflqejcji', 'receivers': ['1157723200@qq.com','azureqaq@icloud.com'], 'header': {
         'HeaderFrom': 'Personal Intelligence System', 'HeaderTo': 'BOSS'}, 'subject': 'Email test', 'message': 'This is a test email.'}
-    with open('test.html','r',encoding='utf-8') as f:
+    with open('htmltest.html','r',encoding='utf-8') as f:
         send = f.read()
         info['message'] = send
     
@@ -102,5 +102,4 @@ if __name__ == '__main__':
         send.send_email()
     except Exception as e:
         print(e)
-    finally:
         send.sever_logout()
