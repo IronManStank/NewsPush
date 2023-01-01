@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily intelligence</title>
+    <style>
+        .text {
+            word-wrap: break-word;
+            word-break: normal;
+            padding-top: 15px
+        }
+
+        img {
+            padding-top: 15px;
+        }
+    </style>
+</head>
+
+
+
+
+<body>
+    <h1 align="center">Weather Reoprt</h1>
+    <div style="width:auto;text-align: left;">
+        <div class="text">
+            <p>{{weather_info}}</p>
+        </div>
+    <h1 align="center">Today's News</h1>
+
+    % for key, value in info_dict.items():
+    <div style="width:auto;text-align: left;">
+        <h2 align="left">{{key}}</h2>
+        <ol>
+            % for v in value[:10]:
+            <li>
+                <a href="{{v[1]}}" target="_blank">{{v[0]}}</a>
+            </li>
+            %end
+        </ol>
+
+    </div>
+    %end
+
+
+    <br>
+
+</body>
+
+</html>

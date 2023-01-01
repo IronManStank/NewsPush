@@ -79,12 +79,11 @@ class GetWeather(object):
             coldRiskDraft = '感冒指数：' + f"{coldRisk['desc']}" + '。'
             comfortDraft = '体感' + f"{comfort['desc']}" + '，'
 
-            draft = dateDraft + citydraft + skyconDraft + precipitationDraft + temperatureDraft + winddrectionDraft + \
-                windspeedDraft + pm25Draft + ultravioletDraft + comfortDraft + coldRiskDraft
 
-            self.result_str = draft
-        except Exception as e:
-            raise GetWeatherFaildError(f'无法获取天气数据: {weather}, Err: {e}')
+        draft = dateDraft + citydraft + skyconDraft + precipitationDraft + temperatureDraft + winddrectionDraft + \
+            windspeedDraft + pm25Draft + ultravioletDraft + comfortDraft + coldRiskDraft
+        return draft
+
 
 
 def get_weather_str(city: str, token_or_path: str) -> str:
