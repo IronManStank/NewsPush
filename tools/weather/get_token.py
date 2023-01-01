@@ -2,26 +2,21 @@
 # -*- encoding: utf-8 -*-
 # 文件: get_token.py
 
-import sys
+import os
 from tools.error import TokenNotFoundError
 
 
-def get_token() -> str:
+def get_token(t_or_p: str) -> str:
     '''
-    获取API的token，首先从命令行获取，
-    如果命令行没提供，则在当前目录寻找本地文件
+    获取API的token，可以是一个文件的路径，也可以是token本身
 
     如果找不到token，则会引起 TokenNotFoundError
     '''
-    token = None
-
     try:
-        token = sys.argv[1]
-    except:
-        try:
-            with open('token.txt', 'r', encoding='utf-8') as f:
-                token = f.read().strip()
-        except Exception as e:
-            raise TokenNotFoundError(e.__str__())
-
-    return token
+        if os.path.isfile(t_or_p):
+            with open(t_or_p, 'r', encoding='utf-8') as f:
+                return f.read().strip()
+        else:
+            return t_or_p.strip()
+    except Exception as e:
+        raise TokenNotFoundError(f'无法读取token, Err: {e}')
