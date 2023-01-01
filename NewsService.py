@@ -63,11 +63,14 @@ class GetNews(object):
             response = requests.get(self.url, headers=self.headers)
             if response.status_code == 200:
                 self.html = response.text
+                self.logger.info('Get News Page Success!')
                 return self.html
         except RequestException as e:
+            self.logger.error(e)
             return None
 
     def process_page(self):
+        self.logger.info('Procedding News Page...')
         news_info = NewsInfo()
         html_text = self.html
         # 读取并解析html内容
@@ -84,15 +87,13 @@ class GetNews(object):
                 self.news_content[news_info.xpath_dict[key][0]] = self.content
                 self.content = []
 
-            self.logger.info('Get News Success!')
+            self.logger.info('Process News Page Success!')
             return self.news_content
 
         except Exception as e:
             self.logger.error(e)
             return None
 
-        except Exception as e:
-            self.logger.error(e)
 
     @staticmethod
     def generate_html_file(file_template_path, generated_file_path, weather_info, news_info):
