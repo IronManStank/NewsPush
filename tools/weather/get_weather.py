@@ -76,7 +76,7 @@ class GetWeather(object):
 
         draft = dateDraft + citydraft + skyconDraft + precipitationDraft + temperatureDraft + winddrectionDraft + \
             windspeedDraft + pm25Draft + ultravioletDraft + comfortDraft + coldRiskDraft
-        print(draft)
+        return draft
 
 
 if __name__ == '__main__':
