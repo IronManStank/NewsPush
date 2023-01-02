@@ -1,0 +1,4 @@
+2023-01-02 00:19:30,265 - __main__ - INFO - NewPush init Success!
+2023-01-02 00:19:33,104 - __main__ - INFO - Get News Page Success!
+2023-01-02 00:19:33,104 - __main__ - INFO - Procedding News Page...
+2023-01-02 00:19:33,266 - __main__ - INFO - Process News Page Success!

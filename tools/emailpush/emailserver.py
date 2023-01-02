@@ -24,7 +24,7 @@ def get_email_info(clidict: dict):
             "HeaderFrom": "Personal Intelligence System",
             "HeaderTo": "BOSS"
         },
-        "subject": "Email test",
+        "subject": "Daily Intelligence Report",
         "message": "This is a test email."
     }
     # 尝试获取模板 也就是 本地配置文件
@@ -89,7 +89,7 @@ class SendEmail():
         self.message = emailinfo.message
 
         self.server = None
-        self.send_email_type = emailinfo.EmailSendType[1]
+        self.send_email_type = emailinfo.EmailSendType[2]
 
     @staticmethod
     def recognize_email_type(sender):
