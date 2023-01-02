@@ -58,24 +58,24 @@ def main():
         print(weather_str)
     except Exception as e:
         print(f'获取天气信息失败: {e}')
-        
+
     # 获取新闻
     try:
         News = GetNews()
         News.get_page()
         news_info = News.process_page()
-        
+
         News.generate_html_file(
-            'NewsTempelate', 'News.html', weather_str, news_info)
+            'NewsTempelate', 'News.html', weather_info=weather_str, news_info=news_info)
     except Exception as e:
         print(f'获取新闻信息失败: {e}')
-    
+
     # 获取生成的新闻html文件
     try:
         with open('News.html', 'r', encoding='utf-8') as f:
             news_str = f.read()
     except Exception as e:
-        print(f'获取新闻html文件失败: {e}')    
+        print(f'获取新闻html文件失败: {e}')
 
     # 发送邮件
     info = get_email_info(args)
