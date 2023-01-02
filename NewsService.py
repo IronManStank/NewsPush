@@ -11,7 +11,7 @@ from os import remove, path
 import logging
 from EmailPushService import SendEmail, EmailInformation
 from tools.weather.get_weather import GetWeather
-
+from tools.weather.get_token import get_token
 
 class NewsInfo(object):
     xpath_dict = {
@@ -83,7 +83,7 @@ class GetNews(object):
                     link = a.get('href')
                     temp = [text, link]
                     self.content.append(temp)
-                # print(self.content)
+
                 self.news_content[news_info.xpath_dict[key][0]] = self.content
                 self.content = []
 
@@ -126,7 +126,8 @@ if __name__ == '__main__':
     News = GetNews()
     News.get_page()
     news_info = News.process_page()
-    a = GetWeather('北京')
+    
+    a = GetWeather('北京', get_token('token.txt'))
     a.process_url()
     a.get_weather()
     weather_info = a.pross_weather()

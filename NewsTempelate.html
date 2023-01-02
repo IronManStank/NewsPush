@@ -7,26 +7,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daily intelligence</title>
     <style>
+
         .text {
+
             word-wrap: break-word;
+
             word-break: normal;
+
             padding-top: 15px
+            
+
         }
+
+        ol{
+            list-style-type: square;
+            list-style-position: outside;
+            
+            color:rgba(192, 27, 128, 0.952);
+            text-align: left;
+            font-size: 30px;
+            font-family: "方正楷体";
+            
+        }
+        p{
+            font-size: 30px;
+            font-family: "方正楷体" ;
+            color:rgb(246, 111, 111);
+        }
+        a{
+            color: rgb(246, 111, 111);
+            text-decoration: none;
+            
+        }
+        h1{
+            font-size: 55px;
+            color: rgb(246, 111, 111);
+            font-family: "方正楷体";
+        }
+        h2{
+            font-size: 40px;
+            color: rgb(246, 111, 111);
+            font-family: "方正楷体";
+        }
+   
 
         img {
             padding-top: 15px;
         }
+
     </style>
 </head>
 
 
 
 
-<body>
+<body background="https://s2.loli.net/2023/01/01/fNmFrXzhCbOKqlo.jpg" style="background-repeat:round; background-size: round;background-position: center; background-attachment:fixed; margin: auto;">
     <h1 align="center">Weather Reoprt</h1>
     <div style="width:auto;text-align: left;">
         <div class="text">
-            <p>{{weather_info}}</p>
+            <p>&nbsp;&nbsp; {{weather_info}}</p>
         </div>
     <h1 align="center">Today's News</h1>
 
@@ -36,7 +75,7 @@
         <ol>
             % for v in value[:10]:
             <li>
-                <a href="{{v[1]}}" target="_blank">{{v[0]}}</a>
+                <a href="{{v[1]}}" target="_blank">&nbsp;&nbsp; {{v[0]}}</a>
             </li>
             %end
         </ol>
