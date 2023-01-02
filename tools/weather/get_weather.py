@@ -79,12 +79,12 @@ class GetWeather(object):
             coldRiskDraft = '感冒指数：' + f"{coldRisk['desc']}" + '。'
             comfortDraft = '体感' + f"{comfort['desc']}" + '，'
             
-            draft = dateDraft + citydraft + skyconDraft + precipitationDraft + temperatureDraft + winddrectionDraft + \
+            self.result_str = dateDraft + citydraft + skyconDraft + precipitationDraft + temperatureDraft + winddrectionDraft + \
                 windspeedDraft + pm25Draft + ultravioletDraft + comfortDraft + coldRiskDraft
-            return draft
+            return self.result_str
         except Exception as e:
             raise e
-            return None
+            
 
             
         
