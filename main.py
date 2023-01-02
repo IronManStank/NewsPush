@@ -66,7 +66,7 @@ def main():
         news_info = News.process_page()
 
         News.generate_html_file(
-            'NewsTempelate', 'News.html', weather_info=weather_str, news_info=news_info)
+            'NewsTempelate.html', 'News.html', weather_info=weather_str, news_info=news_info)
     except Exception as e:
         print(f'获取新闻信息失败: {e}')
 
