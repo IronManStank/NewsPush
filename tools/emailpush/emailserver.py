@@ -89,7 +89,7 @@ class SendEmail():
         self.message = emailinfo.message
 
         self.server = None
-        self.send_email_type = emailinfo.EmailSendType[2]
+        self.send_email_type = emailinfo.EmailSendType[1]
 
     @staticmethod
     def recognize_email_type(sender):
