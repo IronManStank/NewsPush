@@ -54,7 +54,7 @@ def main():
     args = get_cli_args()
     weather_str = '未找到天气数据'
     try:
-        weather_str = get_weather_str('南开', args['token'][0])
+        weather_str = get_weather_str('北京', args['token'][0])
         print(weather_str)
     except Exception as e:
         print(f'获取天气信息失败: {e}')
@@ -75,6 +75,7 @@ def main():
         with open('News.html', 'r', encoding='utf-8') as f:
             news_str = f.read()
     except Exception as e:
+        news_str = e
         print(f'获取新闻html文件内容失败: {e}')
 
     # 发送邮件
