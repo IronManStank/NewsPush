@@ -15,7 +15,7 @@ class GetWeather(object):
         self.baseurl = 'https://api.caiyunapp.com/v2.6'
         self.city = city
         self.loacation = CitytoData(self.city).get_data()
-        self.dailysteps = 1
+        self.dailysteps = 2
         self.info_dict = {
             'token': get_token(token_or_path),
             'city': self.loacation,
@@ -44,6 +44,8 @@ class GetWeather(object):
             r = requests.get(
                 self.askurl, params=self.info_dict['ASKPARAM'])
             self.weatherInfo = r.json()
+            print(self.weatherInfo)
+            
         except Exception as e:
             print('获取天气失败')
             raise GetWeatherFaildError(f'获取天气失败, {e}')
@@ -51,18 +53,18 @@ class GetWeather(object):
     def pross_weather(self):
         try:
             weather = self.weatherInfo
-            temperature = weather['result']['daily']['temperature'][0]
-            wind = weather['result']['daily']['wind'][0]
+            temperature = weather['result']['daily']['temperature'][1]
+            wind = weather['result']['daily']['wind'][1]
             air_quality = weather['result']['daily']['air_quality']
-            skycon = weather['result']['daily']['skycon'][0]
-            precipitation = weather['result']['daily']['precipitation'][0]
+            skycon = weather['result']['daily']['skycon'][1]
+            precipitation = weather['result']['daily']['precipitation'][1]
             life_index = weather['result']['daily']['life_index']
-            ultraviolet = life_index['ultraviolet'][0]
-            coldRisk = life_index['coldRisk'][0]
-            comfort = life_index['comfort'][0]
-            date = weather['result']['daily']['astro'][0]['date'][:10]
+            ultraviolet = life_index['ultraviolet'][1]
+            coldRisk = life_index['coldRisk'][1]
+            comfort = life_index['comfort'][1]
+            date = weather['result']['daily']['astro'][1]['date'][:10]
 
-            citydraft = self.city+'今天'
+            citydraft = self.city+'明天'
             dateDraft = date + '。'
             temperatureDraft = '温度：' + \
                 f"{temperature['max']} ~ {temperature['min']}" + '℃。 '
@@ -73,8 +75,8 @@ class GetWeather(object):
             precipitationDraft = '降水可能性：' + \
                 f"{precipitation['probability']}" + '%。 '
             skyconDraft = '天气' + Data.WEATHER_DICT[skycon['value']] + '。'
-            pm25Draft = '今天PM2.5: ' + \
-                f"{air_quality['pm25'][0]['avg']}" + 'μg/m³。 '
+            pm25Draft = '明天PM2.5: ' + \
+                f"{air_quality['pm25'][1]['avg']}" + 'μg/m³。 '
             ultravioletDraft = '紫外线' + f"{ultraviolet['desc']}" + '，'
             coldRiskDraft = '感冒指数：' + f"{coldRisk['desc']}" + '。'
             comfortDraft = '体感' + f"{comfort['desc']}" + '，'
@@ -97,3 +99,4 @@ def get_weather_str(city: str, token_or_path: str) -> str:
     a.get_weather()
     a.pross_weather()
     return a.result_str
+
