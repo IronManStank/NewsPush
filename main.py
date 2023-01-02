@@ -54,7 +54,7 @@ def main():
     args = get_cli_args()
     weather_str = '未找到天气数据'
     try:
-        weather_str = get_weather_str('北京', args['token'][0])
+        weather_str = get_weather_str('南开', args['token'][0])
         print(weather_str)
     except Exception as e:
         print(f'获取天气信息失败: {e}')
