@@ -133,7 +133,7 @@ if __name__ == '__main__':
     weather_info = a.pross_weather()
 
     News.generate_html_file(
-        'NewsTempelate', 'htmltest.html', weather_info, news_info)
+        'NewsTempelate.html', 'Newsgenerated.html', weather_info, news_info)
 
     info = {'sender': '1157723200@qq.com', 'token': 'mqrsefodflqejcji', 'receivers': ['1157723200@qq.com', 'azureqaq@icloud.com'], 'header': {
         'HeaderFrom': 'Personal Intelligence System', 'HeaderTo': 'BOSS'}, 'subject': 'Email test', 'message': 'This is a test email.'}
