@@ -83,6 +83,7 @@ class GetWeather(object):
                 windspeedDraft + pm25Draft + ultravioletDraft + comfortDraft + coldRiskDraft
             return draft
         except Exception as e:
+            raise e
             return None
 
             
