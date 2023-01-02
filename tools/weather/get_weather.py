@@ -78,11 +78,15 @@ class GetWeather(object):
             ultravioletDraft = '紫外线' + f"{ultraviolet['desc']}" + '，'
             coldRiskDraft = '感冒指数：' + f"{coldRisk['desc']}" + '。'
             comfortDraft = '体感' + f"{comfort['desc']}" + '，'
+            
+            draft = dateDraft + citydraft + skyconDraft + precipitationDraft + temperatureDraft + winddrectionDraft + \
+                windspeedDraft + pm25Draft + ultravioletDraft + comfortDraft + coldRiskDraft
+            return draft
+        except Exception as e:
+            return None
 
-
-        draft = dateDraft + citydraft + skyconDraft + precipitationDraft + temperatureDraft + winddrectionDraft + \
-            windspeedDraft + pm25Draft + ultravioletDraft + comfortDraft + coldRiskDraft
-        return draft
+            
+        
 
 
 
