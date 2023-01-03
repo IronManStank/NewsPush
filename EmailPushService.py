@@ -5,15 +5,15 @@ from re import match
 
 
 class EmailFormatError(Exception):
-    pass
+    ...
 
 
 class EmailServerLoginError(Exception):
-    pass
+    ...
 
 
 class EmailSendError(Exception):
-    pass
+    ...
 
 
 class EmailInformation():
@@ -26,19 +26,19 @@ class EmailInformation():
         self.header_to = header['HeaderTo']
         self.message = message
 
-    sever_dict = {'qq': {'server': 'smtp.qq.com', 'port': 465},
-                  '163': {'server': 'smtp.163.com', 'port': 25},
-                  '126': {'server': 'smtp.126.com', 'port': 25},
-                  '139': {'server': 'smtp.139.com', 'port': 25},
-                  'gmail': {'server': 'smtp.gmail.com', 'port': 587},
-                  'yahoo': {'server': 'smtp.mail.yahoo.com', 'port': 465}
+    sever_dict = {'qq':     {'server': 'smtp.qq.com',           'port': 465},
+                  '163':    {'server': 'smtp.163.com',          'port': 25},
+                  '126':    {'server': 'smtp.126.com',          'port': 25},
+                  '139':    {'server': 'smtp.139.com',          'port': 25},
+                  'gmail':  {'server': 'smtp.gmail.com',        'port': 587},
+                  'yahoo':  {'server': 'smtp.mail.yahoo.com',   'port': 465}
                   }
     EmailSendType = ['plain', 'html']
 
 
 class SendEmail():
 
-    def __init__(self, EmailInformation):
+    def __init__(self, EmailInformation: EmailInformation):
         self.sender = EmailInformation.sender
         self.token = EmailInformation.token
         self.receivers = EmailInformation.receivers
@@ -89,12 +89,12 @@ class SendEmail():
 
 
 if __name__ == '__main__':
-    info = {'sender': '1157723200@qq.com', 'token': 'mqrsefodflqejcji', 'receivers': ['1157723200@qq.com','azureqaq@icloud.com'], 'header': {
+    info = {'sender': '1157723200@qq.com', 'token': 'mqrsefodflqejcji', 'receivers': ['1157723200@qq.com', 'azureqaq@icloud.com'], 'header': {
         'HeaderFrom': 'Personal Intelligence System', 'HeaderTo': 'BOSS'}, 'subject': 'Email test', 'message': 'This is a test email.'}
-    with open('htmltest.html','r',encoding='utf-8') as f:
+    with open('htmltest.html', 'r', encoding='utf-8') as f:
         send = f.read()
         info['message'] = send
-    
+
     email_info = EmailInformation(**info)
     send = SendEmail(email_info)
     try:
