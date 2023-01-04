@@ -15,6 +15,9 @@ venv/
 # local file / dir
 *_local*
 
+# temp
+News.html
+
 # OSX file
 .DS_Store
 
