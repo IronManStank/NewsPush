@@ -5,7 +5,7 @@
 from tools.weather import get_weather_str
 import argparse
 from tools.emailpush import send_email, get_email_info
-from NewsService import GetNews
+from tools.newsservice import GetNews
 
 
 def get_cli_args():
