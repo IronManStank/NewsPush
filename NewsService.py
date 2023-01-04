@@ -2,16 +2,18 @@
 # encoding=utf-8
 # author: L.S.
 
+import logging
+from os import path, remove
+
 import requests
 from bottle import template
+from fake_useragent import UserAgent
 from lxml import etree
 from requests.exceptions import RequestException
-from fake_useragent import UserAgent
-from os import remove, path
-import logging
-from EmailPushService import SendEmail, EmailInformation
-from tools.weather.get_weather import GetWeather
+
+from tools.emailpush.emailserver import EmailInformation, SendEmail
 from tools.weather.get_token import get_token
+from tools.weather.get_weather import GetWeather
 
 
 class NewsInfo(object):
@@ -49,7 +51,7 @@ class GetNews(object):
         self.url = 'https://tophub.today'
         self.html = None
         self.logger = logging.getLogger(__name__)
-        logging.basicConfig(level=logging.INFO, filemode='w', filename='Newslog.txt',
+        logging.basicConfig(level=logging.INFO, filemode='w', filename='News.log',
                             format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
         self.headers = {"User-Agent": UserAgent().firefox}
 
