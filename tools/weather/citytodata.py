@@ -4,6 +4,7 @@
 
 
 import csv
+
 from tools.error import CsvParserError
 
 

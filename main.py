@@ -2,10 +2,11 @@
 # -*- encoding: utf-8 -*-
 # 文件: main.py
 
-from tools.weather import get_weather_str
 import argparse
-from tools.emailpush import send_email, get_email_info
+
+from tools.emailpush import get_email_info, send_email
 from tools.newsservice import GetNews
+from tools.weather import get_weather_str
 
 
 def get_cli_args():
