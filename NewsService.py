@@ -13,6 +13,7 @@ from EmailPushService import SendEmail, EmailInformation
 from tools.weather.get_weather import GetWeather
 from tools.weather.get_token import get_token
 
+
 class NewsInfo(object):
     xpath_dict = {
         # 知乎
@@ -94,7 +95,6 @@ class GetNews(object):
             self.logger.error(e)
             return None
 
-
     @staticmethod
     def generate_html_file(file_template_path, generated_file_path, weather_info, news_info):
         html = template(file_template_path,
@@ -126,7 +126,7 @@ if __name__ == '__main__':
     News = GetNews()
     News.get_page()
     news_info = News.process_page()
-    
+
     a = GetWeather('北京', get_token('token.txt'))
     a.process_url()
     a.get_weather()
