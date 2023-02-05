@@ -123,32 +123,4 @@ class GetNews(object):
             return f.read()
 
 
-if __name__ == '__main__':
 
-    News = GetNews()
-    News.get_page()
-    news_info = News.process_page()
-
-    a = GetWeather('北京', get_token('token.txt'))
-    a.process_url()
-    a.get_weather()
-    weather_info = a.pross_weather()
-
-    News.generate_html_file(
-        'NewsTempelate.html', 'Newsgenerated.html', weather_info, news_info)
-
-    info = {'sender': '1157723200@qq.com', 'token': 'mqrsefodflqejcji', 'receivers': ['1157723200@qq.com', 'azureqaq@icloud.com'], 'header': {
-        'HeaderFrom': 'Personal Intelligence System', 'HeaderTo': 'BOSS'}, 'subject': 'Email test', 'message': 'This is a test email.'}
-    with open('htmltest.html', 'r', encoding='utf-8') as f:
-        send = f.read()
-        info['message'] = send
-
-    email_info = EmailInformation(**info)
-    send = SendEmail(email_info)
-    try:
-        send.sever_login()
-        send.send_email()
-    except Exception as e:
-        print(e)
-        send.sever_logout()
-    print(news_info)
