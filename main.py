@@ -41,6 +41,9 @@ def get_cli_args():
     parser.add_argument('--message', '-m', type=str,
                         required=False, help='email: message 可以是文件路径', nargs=1)
 
+    parser.add_argument('--city', '-c', type=str, default="南开",
+                        required=False, help='天气选择的位置', nargs=1)
+
     args = parser.parse_args()._get_kwargs()
 
     args = {x: y for x, y in args}
@@ -55,7 +58,7 @@ def main():
     args = get_cli_args()
     weather_str = '未找到天气数据'
     try:
-        weather_str = get_weather_str('南开', args['token'][0])
+        weather_str = get_weather_str(args['city'][0], args['token'][0])
         print(weather_str)
     except Exception as e:
         print(f'获取天气信息失败: {e}')
