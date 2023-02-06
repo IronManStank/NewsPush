@@ -38,8 +38,6 @@
 
 开发进度请查看: [changelog](./CHANGELOG.md)
 
-
-
 ## 使用方式
 
 ### 通过 Github Action
