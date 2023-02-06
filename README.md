@@ -76,8 +76,8 @@
 在使用 `Github Action` 时，需要向仓库的`secrets`中添加以下参数：
 
 - `ETOKEN`: 该token为彩云天气api token
-- `SENDER`:内容为邮件发送者邮箱
-- `USERS`:内容为邮件接收者邮箱，多个邮箱请用 `,` 分隔
-- `TOKEN`:值为发送者邮箱token，开启IMAP或POP3服务后获得
+- `SENDER`: 内容为邮件发送者邮箱
+- `USERS`: 内容为邮件接收者邮箱，多个邮箱请用 `,` 分隔
+- `TOKEN`: 值为发送者邮箱token，开启IMAP或POP3服务后获得
 
 注：彩云天气token不是必备项，但是会影响实际使用体验。
