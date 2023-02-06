@@ -21,4 +21,4 @@ jobs:
     - name: send email
       run: |
         python main.py -t "${{ secrets.TOKEN }}" -s "${{ secrets.SENDER }}" -n "${{ secrets.ETOKEN }}" -r "${{ secrets.USERS }} -c "${{ secrets.CITY }}"
-      continue-on-error: true
+      continue-on-error: false
