@@ -20,5 +20,5 @@ jobs:
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: send email
       run: |
-        python main.py -t "${{ secrets.TOKEN }}" -s "${{ secrets.SENDER }}" -n "${{ secrets.ETOKEN }}" -r "${{ secrets.USERS }}"
+        python main.py -t "${{ secrets.TOKEN }}" -s "${{ secrets.SENDER }}" -n "${{ secrets.ETOKEN }}" -r "${{ secrets.USERS }} -c "${{ secrets.CITY }}"
       continue-on-error: true
