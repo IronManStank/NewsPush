@@ -59,6 +59,7 @@ def get_email_info(clidict: dict):
 
 class EmailInformation():
     def __init__(self, sender, token, receivers, header, subject, message):
+        sender = sender.replace(' ', '_')
         self.sender = sender
         self.token = token
         self.receivers = receivers
