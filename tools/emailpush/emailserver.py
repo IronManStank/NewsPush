@@ -63,7 +63,7 @@ class EmailInformation():
         self.token = token
         self.receivers = receivers
         self.subject = subject
-        self.header_from = header['HeaderFrom']
+        self.header_from = f"{header['HeaderFrom']} <{self.sender}>"
         self.header_to = header['HeaderTo']
         self.message = message
 
