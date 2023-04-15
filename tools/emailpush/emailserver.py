@@ -81,7 +81,9 @@ class EmailInformation:
     """Construct the mailbox information base structure.
     """    
     def __init__(self, sender, token, receivers, header, subject, message):
+
         try:
+            sender = sender.replace(' ', '_')
             self.sender = sender
             self.token = token
             self.receivers = receivers
@@ -91,6 +93,7 @@ class EmailInformation:
             self.message = message
         except:
             raise EmailFormatError("邮件信息格式错误,请检查配置以及更新模板！")
+
 
     sever_dict = {
         "qq": {"server": "smtp.qq.com", "port": 465},
