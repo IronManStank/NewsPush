@@ -4,7 +4,7 @@
 
 import argparse
 
-from tools.emailpush import get_email_info, send_email
+from tools.emailpush import update_value, send_email
 from tools.newsservice import GetNews
 from tools.weather import get_weather_str
 
@@ -83,7 +83,7 @@ def main():
         print(f'获取新闻html文件内容失败: {e}')
 
     # 发送邮件
-    info = get_email_info(args)
+    info = update_value(args)
 
     try:
         send_email(info, news_str)

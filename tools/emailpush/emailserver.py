@@ -142,19 +142,19 @@ class SendEmail:
     def sever_login(self)->None:
         """Login server"""
         result = self.recognize_email_type(self.sender)
-        # if result:
-            # try:
-        self.sever = smtplib.SMTP_SSL(
-            EmailInformation.sever_dict[result]["server"],
-            EmailInformation.sever_dict[result]["port"],
-        )
-        self.sever.set_debuglevel(0)
-        self.sever.login(self.sender, self.token)
+        if result:
+            try:
+                self.sever = smtplib.SMTP_SSL(
+                    EmailInformation.sever_dict[result]["server"],
+                    EmailInformation.sever_dict[result]["port"],
+                )
+                self.sever.set_debuglevel(0)
+                self.sever.login(self.sender, self.token)
 
-        #     except Exception as e:
-        #         raise EmailServerLoginError(f"邮箱服务器登录失败, Err: {e}")
-        # else:
-        #     raise EmailFormatError("邮箱格式解析错误！")
+            except Exception as e:
+                raise EmailServerLoginError(f"邮箱服务器登录失败, Err: {e}")
+        else:
+            raise EmailFormatError("邮箱格式解析错误！")
 
 
     def send_email(self):
@@ -168,8 +168,8 @@ class SendEmail:
             self.sever.sendmail(self.sender, self.receivers, email.as_string())
             self.sever_logout()
         except Exception as e:
-            # raise EmailSendError(f"邮件发送失败, Err: {e}")
-            raise e
+            raise EmailSendError(f"邮件发送失败, Err: {e}")
+            # raise e
 
     def sever_logout(self):
         self.sever.quit()
@@ -198,8 +198,8 @@ def send_email(info: dict, content_or_path: str):
         send.send_email()
         print("邮件发送成功")
     except Exception as e:
-        # raise EmailSendError(f"发送邮件失败: {e}")
-        raise e
+        raise EmailSendError(f"发送邮件失败: {e}")
+        # raise e
     finally:
         try:
             send.sever_logout()
