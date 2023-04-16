@@ -8,7 +8,7 @@ import requests
 from tools.error import GetWeatherFaildError
 from tools.weather.citytodata import CitytoData
 from tools.weather.process_data import Data
-from tools.get_token import get_token
+from .get_token import get_token
 
 
 class GetWeather(object):
