@@ -4,4 +4,4 @@
 
 
 
-from .emailserver import update_value, get_cline_info, send_email
+from .emailserver import update_value, update_from_cline_info, send_email
