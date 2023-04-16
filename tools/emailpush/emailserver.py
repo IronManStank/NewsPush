@@ -169,7 +169,7 @@ class SendEmail:
             email["From"] = Header(self.header_from)
             
             email["To"] = Header(self.header_to)
-            email["Subject"] = Header(self.subject, "utf-8")
+            email["Subject"] = Header(self.subject)
 
             self.sever.sendmail(self.sender, self.receivers, email.as_string())
             self.sever_logout()
