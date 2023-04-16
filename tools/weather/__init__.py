@@ -7,7 +7,8 @@
 '''
 
 __all__ = [
-    'get_weather_str'
+    'get_weather_str','get_token'
 ]
 
 from .get_weather import get_weather_str
+from .get_token import get_token
