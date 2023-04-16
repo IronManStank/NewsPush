@@ -28,7 +28,7 @@ def update_value(value_dict: dict, key: str, single: bool = True, default=None) 
         return default
 
 
-def update_from_cline_info(value_dict: dict)-> dict:
+def update_from_cline_info(value_dict: dict) -> dict:
     """Get mail parameters from the command line dictionary.
 
     Args:
@@ -36,7 +36,7 @@ def update_from_cline_info(value_dict: dict)-> dict:
 
     Returns:
         _type_: Return info dict.
-    """    
+    """
     template_dict = {
         "header": {"HeaderFrom": "Personal Intelligence System", "HeaderTo": "BOSS"},
         "subject": "Daily Intelligence Report",
@@ -78,12 +78,10 @@ def update_from_cline_info(value_dict: dict)-> dict:
 
 
 class EmailInformation:
-    """Construct the mailbox information base structure.
-    """    
-    def __init__(self, sender, token, receivers, header, subject, message):
+    """Construct the mailbox information base structure."""
 
+    def __init__(self, sender, token, receivers, header, subject, message):
         try:
-            
             self.sender = sender
             self.token = token
             self.receivers = receivers
@@ -93,7 +91,6 @@ class EmailInformation:
             self.message = message
         except:
             raise EmailFormatError("邮件信息格式错误,请检查配置以及更新模板！")
-
 
     sever_dict = {
         "qq": {"server": "smtp.qq.com", "port": 465},
@@ -107,14 +104,14 @@ class EmailInformation:
 
 
 class SendEmail:
-    """Mail Sender
-    """    
+    """Mail Sender"""
+
     def __init__(self, emailinfo: EmailInformation):
         self.sender = emailinfo.sender
         self.token = emailinfo.token
         self.receivers = emailinfo.receivers
         self.subject = emailinfo.subject
-        self.header_from = emailinfo.header_from
+        self.header_from = emailinfo.header_from + "<" + self.sender + ">"
         self.header_to = emailinfo.header_to
         self.message = emailinfo.message
 
@@ -142,12 +139,12 @@ class SendEmail:
             print(e)
             return False
 
-    def sever_login(self)->None:
+    def sever_login(self) -> None:
         """Login server"""
         result = self.recognize_email_type(self.sender)
         if result:
-            if result == 'tju':
-                result = '163'
+            if result == "tju":
+                result = "163"
             else:
                 try:
                     self.sever = smtplib.SMTP_SSL(
@@ -162,14 +159,14 @@ class SendEmail:
         else:
             raise EmailFormatError("邮箱格式解析错误！")
 
-
     def send_email(self):
         try:
             email = MIMEText(self.message, self.send_email_type, "utf-8")
             email["From"] = Header(self.header_from)
-            
-            email["To"] = Header(self.header_to)
-            email["Subject"] = Header(self.subject)
+
+            email["To"] = Header(self.header_to, "utf-8")
+            email["Subject"] = Header(self.subject, "utf-8")
+
 
             self.sever.sendmail(self.sender, self.receivers, email.as_string())
             self.sever_logout()
@@ -214,5 +211,5 @@ def send_email(info: dict, content_or_path: str):
 
 
 # if __name__ == "__main__":
-#     value_dict = {}
+#     # value_dict = {}
 #     send_email(info=value_dict, content_or_path="test")
