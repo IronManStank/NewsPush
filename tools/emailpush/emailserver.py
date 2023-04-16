@@ -168,7 +168,7 @@ class SendEmail:
             email = MIMEText(self.message, self.send_email_type, "utf-8")
             email["From"] = Header(self.header_from)
             
-            email["To"] = Header(self.header_to, "utf-8")
+            email["To"] = Header(self.header_to)
             email["Subject"] = Header(self.subject, "utf-8")
 
             self.sever.sendmail(self.sender, self.receivers, email.as_string())
