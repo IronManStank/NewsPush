@@ -2,7 +2,7 @@ name: News Push
 
 on:
   schedule:
-    - cron: '45 10 * * *'
+    - cron: '0 11 * * *'
   workflow_dispatch:
 
 jobs:
