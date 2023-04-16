@@ -28,7 +28,7 @@ def update_value(value_dict: dict, key: str, single: bool = True, default=None) 
         return default
 
 
-def get_cline_info(value_dict: dict)-> dict:
+def update_from_cline_info(value_dict: dict)-> dict:
     """Get mail parameters from the command line dictionary.
 
     Args:

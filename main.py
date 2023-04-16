@@ -4,7 +4,7 @@
 
 import argparse
 
-from tools.emailpush import update_value, send_email
+from tools.emailpush import update_from_cline_info, send_email
 from tools.newsservice import GetNews
 from tools.weather import get_weather_str
 
@@ -85,7 +85,7 @@ def main():
         raise e
 
     # Send Email
-    info = update_value(args)
+    info = update_from_cline_info(args)
 
     try:
         send_email(info, news_str)
