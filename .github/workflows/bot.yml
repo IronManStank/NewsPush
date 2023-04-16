@@ -2,7 +2,7 @@ name: News Push
 
 on:
   schedule:
-    - cron: '0 11 * * *'
+    - cron: '45 10 * * *'
   workflow_dispatch:
 
 jobs:
@@ -14,7 +14,7 @@ jobs:
       with:
         python-version: '3.9'
         cache: 'pip'
-    - run: if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    - run: if [ -f requirements.txt ]; then pip install -r requirements.txt; 
     - name: send email
       run: |
         python main.py -t "${{ secrets.TOKEN }}" -s "${{ secrets.SENDER }}" -n "${{ secrets.ETOKEN }}" -r "${{ secrets.USERS }}" -c "${{ secrets.CITY }}"

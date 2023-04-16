@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- encoding: utf-8 -*-
-# 文件: main.py
+# file: main.py
 
 import argparse
 
@@ -10,16 +10,16 @@ from tools.weather import get_weather_str
 
 
 def get_cli_args():
-    # 在这里解析命令行
+    # Parse the command line here.
     parser = argparse.ArgumentParser(description="NewsPush Bot")
 
     parser.add_argument('--token',  '-t', type=str,
                         default=['token.txt'], help='token本身，或者所在的txt文件路径', nargs=1)
 
-    # 邮件相关
-    # 用这里提供的参数去更新本地文件的参数
-    # 这里的参数可以不是完整的
-    # 如果本地配置文件中有完整参数，那么这些参数完全可以不提供
+# Email Related.
+# Update the local file parameters with the parameters provided here.
+# The  parameter may not be complete.
+# If there are full parameters in the local configuration file, then these parameters may not be supplied at all.
     parser.add_argument('--sender', '-s', type=str,
                         required=False, help='email: sender', nargs=1)
 
@@ -48,13 +48,14 @@ def get_cli_args():
 
     args = {x: y for x, y in args}
 
-    # 现在 args 是个字典
+    # Args：dict type.
     print(args)
 
     return args
 
 
 def main():
+    # Get Weather Info
     args = get_cli_args()
     weather_str = '未找到天气数据'
     try:
@@ -63,7 +64,7 @@ def main():
     except Exception as e:
         print(f'获取天气信息失败: {e}')
 
-    # 获取新闻
+    # Get News Info
     try:
         News = GetNews()
         News.get_page()
@@ -74,15 +75,16 @@ def main():
     except Exception as e:
         print(f'获取新闻信息失败: {e}')
 
-    # 获取生成的新闻html文件
+    # Generate News HTML File
     try:
         with open('News.html', 'r', encoding='utf-8') as f:
             news_str = f.read()
     except Exception as e:
-        news_str = e
+        
         print(f'获取新闻html文件内容失败: {e}')
+        raise e
 
-    # 发送邮件
+    # Send Email
     info = update_value(args)
 
     try:

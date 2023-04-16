@@ -4,7 +4,7 @@ from email.header import Header
 from email.mime.text import MIMEText
 from os.path import isfile
 from re import match
-# from tools.error import *
+from tools.error import *
 
 
 def update_value(value_dict: dict, key: str, single: bool = True, default=None) -> None:
@@ -83,7 +83,7 @@ class EmailInformation:
     def __init__(self, sender, token, receivers, header, subject, message):
 
         try:
-            sender = sender.replace(' ', '_')
+            
             self.sender = sender
             self.token = token
             self.receivers = receivers
@@ -107,6 +107,8 @@ class EmailInformation:
 
 
 class SendEmail:
+    """Mail Sender
+    """    
     def __init__(self, emailinfo: EmailInformation):
         self.sender = emailinfo.sender
         self.token = emailinfo.token
@@ -130,7 +132,8 @@ class SendEmail:
             Error or sender_type
         """
         try:
-            rule = r"^[a-zA-Z0-9_-]+@([a-zA-Z0-9]+)\.com$"
+            # Matching mailbox type
+            rule = r"^[a-zA-Z0-9_-]+@([a-zA-Z0-9]+)\..*$"
             if match(rule, sender):
                 return match(rule, sender)[1]
             else:
@@ -143,16 +146,19 @@ class SendEmail:
         """Login server"""
         result = self.recognize_email_type(self.sender)
         if result:
-            try:
-                self.sever = smtplib.SMTP_SSL(
-                    EmailInformation.sever_dict[result]["server"],
-                    EmailInformation.sever_dict[result]["port"],
-                )
-                self.sever.set_debuglevel(0)
-                self.sever.login(self.sender, self.token)
+            if result == 'tju':
+                result = '163'
+            else:
+                try:
+                    self.sever = smtplib.SMTP_SSL(
+                        EmailInformation.sever_dict[result]["server"],
+                        EmailInformation.sever_dict[result]["port"],
+                    )
+                    self.sever.set_debuglevel(0)
+                    self.sever.login(self.sender, self.token)
 
-            except Exception as e:
-                raise EmailServerLoginError(f"邮箱服务器登录失败, Err: {e}")
+                except Exception as e:
+                    raise EmailServerLoginError(f"邮箱服务器登录失败, Err: {e}")
         else:
             raise EmailFormatError("邮箱格式解析错误！")
 
@@ -177,7 +183,7 @@ class SendEmail:
 
 def send_email(info: dict, content_or_path: str):
     """
-    尝试发送邮件，如果失败会引起错误的
+    Try to send an email, if it fails it will cause an error.
     """
     if isfile(content_or_path):
         try:
@@ -207,6 +213,6 @@ def send_email(info: dict, content_or_path: str):
             pass
 
 
-if __name__ == "__main__":
-
-    send_email(info=value_dict, content_or_path="test")
+# if __name__ == "__main__":
+#     value_dict = {}
+#     send_email(info=value_dict, content_or_path="test")

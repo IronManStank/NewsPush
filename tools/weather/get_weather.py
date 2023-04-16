@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- encoding: utf-8 -*-
-# 文件: weather.py
+# file: weather.py
 
 
 import requests
@@ -8,11 +8,13 @@ import requests
 from tools.error import GetWeatherFaildError
 from tools.weather.citytodata import CitytoData
 from tools.weather.process_data import Data
-
-from .get_token import get_token
+from tools.get_token import get_token
 
 
 class GetWeather(object):
+    """
+    Get waether information from Caiyun Weather API
+    """    
     def __init__(self, city: str, token_or_path: str):
         self.baseurl = 'https://api.caiyunapp.com/v2.6'
         self.city = city
@@ -35,13 +37,18 @@ class GetWeather(object):
         self.result_str = ''
 
     def process_url(self):
-        '''处理url'''
+        '''Process url'''
         # "https://api.caiyunapp.com/v2.6/TAkhjf8d1nlSlspN/101.6656,39.2072/daily?dailysteps=1"
         self.askurl = self.baseurl + '/' + \
             self.info_dict['token'] + '/'+self.info_dict['city'] + \
             '/' + self.info_dict['forcastype']
 
     def get_weather(self):
+        """Get weather
+
+        Raises:
+            GetWeatherFaildError: Get weather failed.
+        """        
         try:
             r = requests.get(
                 self.askurl, params=self.info_dict['ASKPARAM'])
@@ -53,6 +60,14 @@ class GetWeather(object):
             raise GetWeatherFaildError(f'获取天气失败, {e}')
 
     def pross_weather(self):
+        """Process weather information.
+
+        Raises:
+            e: Processing data error.
+
+        Returns:
+            _type_: str
+        """        
         try:
             weather = self.weatherInfo
             temperature = weather['result']['daily']['temperature'][1]
@@ -96,6 +111,15 @@ class GetWeather(object):
 
 
 def get_weather_str(city: str, token_or_path: str) -> str:
+    """Get weather string
+
+    Args:
+        city (str): city
+        token_or_path (str): Caiyun Weather API token or path
+
+    Returns:
+        str: Wearther string
+    """    
     a = GetWeather(city, token_or_path)
     a.process_url()
     a.get_weather()
