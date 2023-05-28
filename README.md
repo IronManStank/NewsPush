@@ -49,7 +49,6 @@
     "message": "This is a test email." 
 }
 
-注:彩云天气token不是必要条件,但它会影响实际使用体验。 
 ### 命令行参数 
 可使用 python main.py --help 查看命令行帮助信息。 
 在使用 Github Action 时,需要在仓库的`secrets`中添加以下参数:
