@@ -6,7 +6,7 @@ import argparse
 
 from tools.emailpush import update_from_cline_info, send_email
 from tools.newsservice import GetNews
-from tools.weather import get_weather_str
+from tools.weather import get_weather_str,GetWeatherReport
 
 
 def get_cli_args():
@@ -59,10 +59,16 @@ def main():
     args = get_cli_args()
     weather_str = '未找到天气数据'
     try:
-        weather_str = get_weather_str(args['city'][0], args['token'][0])
+        weather = GetWeatherReport()
+        weather_str=weather.weather_meassage(args['city'][0])
         print(weather_str)
     except Exception as e:
-        print(f'获取天气信息失败: {e}')
+        print(f'第一种方法获取天气失败: {e}' + ",尝试使用第二种方法获取天气信息")
+        try:
+            weather_str = get_weather_str(args['city'][0], args['token'][0])
+            print(weather_str)
+        except Exception as e:           
+            print(f'获取天气信息失败: {e}')
 
     # Get News Info
     try:
