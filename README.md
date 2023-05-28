@@ -48,6 +48,7 @@
     "subject": "Email test",
     "message": "This is a test email." 
 }
+```
 
 ### 命令行参数 
 可使用 python main.py --help 查看命令行帮助信息。 
