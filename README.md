@@ -32,6 +32,7 @@
 ### 配置文件
 - ***token***: 项目根目录新建文件`token.txt`,在其中填入彩云天气的token。彩云天气token申请教程请自行搜索。 
 - ***email***:在`tools/emailpush`下新建文件`email_config.json`,按照模板填写。
+
 ```json
 {
     "sender": "asd@qq.com",
@@ -47,7 +48,8 @@
     "subject": "Email test",
     "message": "This is a test email." 
 }
-注:彩云天气token不是必要条件,但它会影响实际使用体验。 
+```
+
 ### 命令行参数 
 可使用 python main.py --help 查看命令行帮助信息。 
 在使用 Github Action 时,需要在仓库的`secrets`中添加以下参数:
@@ -56,4 +58,5 @@
 - USERS: 内容为邮件接收者邮箱,多个邮箱请用 , 分隔 
 - TOKEN: 值为发送者邮箱token,开启IMAP或POP3服务后获得 
 - CITY: 选择的城市天气 
-注:彩云天气token不是必要条件,但它会影响实际使用体验
+
+**注:彩云天气token不是必要条件,但它会影响实际使用体验**
