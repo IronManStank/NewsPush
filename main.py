@@ -41,7 +41,7 @@ def get_cli_args():
     parser.add_argument('--message', '-m', type=str,
                         required=False, help='email: message 可以是文件路径', nargs=1)
 
-    parser.add_argument('--city', '-c', type=str, default="南开",
+    parser.add_argument('--city', '-c', type=str, default="天津",
                         required=False, help='天气选择的位置', nargs=1)
 
     args = parser.parse_args()._get_kwargs()
@@ -62,6 +62,8 @@ def main():
         weather = GetWeatherReport()
         weather_str=weather.weather_meassage(args['city'][0])
         print(weather_str)
+        if not weather_str:
+            raise Exception('天气信息获取失败')
     except Exception as e:
         print(f'第一种方法获取天气失败: {e}' + ",尝试使用第二种方法获取天气信息")
         try:
