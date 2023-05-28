@@ -32,7 +32,7 @@
 ### 配置文件
 - ***token***: 项目根目录新建文件`token.txt`,在其中填入彩云天气的token。彩云天气token申请教程请自行搜索。 
 - ***email***:在`tools/emailpush`下新建文件`email_config.json`,按照模板填写。
-json
+```json
 {
     "sender": "asd@qq.com",
     "token": "m*********ji",
