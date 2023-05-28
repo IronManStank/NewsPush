@@ -46,7 +46,7 @@
     },
     "subject": "Email test",
     "message": "This is a test email." 
-}
+}```
 注:彩云天气token不是必要条件,但它会影响实际使用体验。 
 ### 命令行参数 
 可使用 python main.py --help 查看命令行帮助信息。 
