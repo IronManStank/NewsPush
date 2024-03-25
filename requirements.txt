@@ -2,5 +2,5 @@
 requests==2.31.0
 bottle==0.12.25
 lxml==5.0.0
-fake-useragent==1.2.1
+fake-useragent==1.5.1
 retry2==0.9.5
