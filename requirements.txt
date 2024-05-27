@@ -1,5 +1,5 @@
 # 手写依赖，不要写依赖的依赖
-requests==2.31.0
+requests==2.32.2
 bottle==0.12.25
 lxml==5.0.0
 fake-useragent==1.2.1
